@@ -33,5 +33,18 @@ namespace MVC_Identity_MySql.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult LuoTiedote(string otsikko, string kuvaus)
+        {
+            Tiedote tiedote = new Tiedote();
+            tiedote.Name = otsikko;
+            tiedote.Desc = kuvaus;
+            tiedote.DT = DateTime.Now;
+            _db.Tiedotteet.Add(tiedote);
+            _db.SaveChanges();
+            return View();
+        }
     }
 }
