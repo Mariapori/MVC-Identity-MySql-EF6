@@ -1,0 +1,26 @@
+﻿@model List<Tiedote>
+@{
+    ViewData["Title"] = "Tiedotteet";
+}
+<h1>@ViewData["Title"]</h1>
+
+@if(Model != null && Model.Count > 0)
+{
+    @foreach (var Tiedote in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <b>@Tiedote.Name</b>
+            </div>
+            <div class="card-body">
+                @Tiedote.Desc
+            </div>
+            <div class="card-footer">
+                @Tiedote.DT.ToLongDateString()
+            </div>
+        </div>
+    }
+}else{
+    <h2>Ei tiedotteita.</h2>
+}
+
